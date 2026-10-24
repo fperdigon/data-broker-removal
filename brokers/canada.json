@@ -1,0 +1,96 @@
+{
+  "region": "canada",
+  "description": "Canadian directories, registries and marketing lists. Most Canadians are not in US people-search sites; start here.",
+  "brokers": [
+    {
+      "id": "canada411",
+      "name": "Canada411 / YP.ca",
+      "category": "directory",
+      "search_url": "https://www.canada411.ca/",
+      "optout_url": null,
+      "automation": "search-only",
+      "notes": "Name search by city works without a bot check. Removal is via their contact/help pages; only needed if the user actually appears. Not found for the pilot user.",
+      "url_verified": true
+    },
+    {
+      "id": "411ca",
+      "name": "411.ca",
+      "category": "directory",
+      "search_url": "https://411.ca/",
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Not yet checked. Find the removal link in the site footer.",
+      "url_verified": false
+    },
+    {
+      "id": "canpages",
+      "name": "Canpages",
+      "category": "directory",
+      "search_url": "https://www.canpages.ca/",
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Not yet checked.",
+      "url_verified": false
+    },
+    {
+      "id": "opencorporates",
+      "name": "OpenCorporates",
+      "category": "company-registry-mirror",
+      "search_url": "https://opencorporates.com/",
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Mirrors public company registries, including officer names and addresses. Not yet checked. Removal is limited by registry law.",
+      "url_verified": false
+    },
+    {
+      "id": "dncl",
+      "name": "National Do Not Call List (DNCL)",
+      "category": "government-list",
+      "search_url": null,
+      "optout_url": "https://www.lnnte-dncl.gc.ca/en/Consumer/Register-your-number",
+      "automation": "email-confirm",
+      "notes": "Government registration for phone numbers. Needs only the phone number plus an email confirmation. Not submitted yet for the pilot user; user must approve since it is a registration, not a removal.",
+      "url_verified": true
+    },
+    {
+      "id": "quebec-req",
+      "name": "Registraire des entreprises du Quebec (REQ)",
+      "category": "company-registry",
+      "search_url": "https://www.registreentreprises.gouv.qc.ca/",
+      "optout_url": null,
+      "automation": "human",
+      "notes": "Publishes the registered address of the corporation and its directors. Cannot be removed with an opt-out. The fix is a filing that changes the registered address (for example to a business address or PO box). It has cost and legal consequences, so always leave it to the user.",
+      "url_verified": true
+    },
+    {
+      "id": "equifax-ca",
+      "name": "Equifax Canada (marketing opt-out)",
+      "category": "credit-bureau-marketing",
+      "search_url": null,
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Not yet checked.",
+      "url_verified": false
+    },
+    {
+      "id": "transunion-ca",
+      "name": "TransUnion Canada (marketing opt-out)",
+      "category": "credit-bureau-marketing",
+      "search_url": null,
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Not yet checked.",
+      "url_verified": false
+    },
+    {
+      "id": "dnb-ca",
+      "name": "Dun & Bradstreet Canada",
+      "category": "b2b",
+      "search_url": null,
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Business-contact listing. Not yet checked.",
+      "url_verified": false
+    }
+  ]
+}

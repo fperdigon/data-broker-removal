@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} - Data Broker Removal Report</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --ink: #14181f; --muted: #5b6573; --line: #e2e6ec;
+    --done: #1f8a4c; --pending: #c98a00; --user: #d4572a; --clean: #3b7dd8; --idle: #aab2bf; --warn: #8c5bd1; --unv: #1b9aa6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1318; --card: #171c23; --ink: #e8ecf2; --muted: #98a2b1; --line: #262d37;
+      --done: #3ec47a; --pending: #e3a920; --user: #f07a4d; --clean: #6aa3ee; --idle: #5a6472; --warn: #a98af0; --unv: #4cc3cf;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1318; --card: #171c23; --ink: #e8ecf2; --muted: #98a2b1; --line: #262d37;
+    --done: #3ec47a; --pending: #e3a920; --user: #f07a4d; --clean: #6aa3ee; --idle: #5a6472; --warn: #a98af0; --unv: #4cc3cf;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  h2 { font-size: 16px; margin: 32px 0 12px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .card .n { font-size: 32px; font-weight: 700; line-height: 1.1; }
+  .card .l { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--line); margin: 8px 0 12px; }
+  .bar span { display: block; height: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: baseline; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 14px; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: var(--bg); }
+  tr:last-child td { border-bottom: 0; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  select, input[type=search] { padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: inherit; }
+  a { color: var(--clean); }
+  .note { color: var(--muted); font-size: 13px; }
+  .region-row { display: grid; grid-template-columns: 150px 1fr 70px; gap: 12px; align-items: center; margin: 8px 0; font-size: 14px; }
+  .todo { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 4px 16px; }
+  .todo li { padding: 10px 0; border-bottom: 1px solid var(--line); list-style: none; }
+  .todo li:last-child { border-bottom: 0; }
+  .todo ul { margin: 0; padding: 0; }
+  .scroll { overflow-x: auto; }
+  @media (max-width: 640px) { .region-row { grid-template-columns: 110px 1fr 54px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+
+  <div class="cards" id="cards"></div>
+
+  <h2>Overall progress</h2>
+  <div class="bar" id="bar" role="img" aria-label="Status breakdown"></div>
+  <div class="legend" id="legend"></div>
+
+  <h2>By region</h2>
+  <div id="regions"></div>
+
+  <h2>Next actions for you</h2>
+  <div class="todo"><ul id="todo"></ul></div>
+
+  <h2>Recheck due</h2>
+  <div class="todo"><ul id="recheck"></ul></div>
+
+  <h2>All sites</h2>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search a site" aria-label="Search a site">
+    <select id="fRegion" aria-label="Region"><option value="">All regions</option></select>
+    <select id="fStatus" aria-label="Status"><option value="">All statuses</option></select>
+  </div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Site</th><th>Region</th><th>Status</th><th>Date</th><th>How automatic</th><th>Notes</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <p class="note">Generated <span id="gen"></span> by the data-broker-removal skill. This file contains your name and request history; keep it private.</p>
+</main>
+
+<script id="data" type="application/json">{{DATA_JSON}}</script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var COLOR = {
+    'submitted': 'var(--done)', 'pending-email': 'var(--pending)', 'needs-user': 'var(--user)',
+    'blocked': 'var(--warn)', 'not-found': 'var(--clean)', 'defunct': 'var(--clean)',
+    'unverified': 'var(--unv)', 'not-started': 'var(--idle)'
+  };
+  var ORDER = ['submitted', 'pending-email', 'needs-user', 'blocked', 'unverified', 'not-found', 'defunct', 'not-started'];
+  var REGION = { canada: 'Canada', usa: 'United States', b2b: 'Business-to-business', 'marketing-search': 'Marketing and search' };
+  var rows = D.rows, total = rows.length;
+  function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+  function count(f) { return rows.filter(f).length; }
+  function st(s) { return D.statuses[s] || s; }
+
+  document.getElementById('title').textContent = D.person;
+  document.getElementById('sub').textContent = 'Data broker removal report, ' + total + ' sites tracked';
+  document.getElementById('gen').textContent = D.generated;
+
+  var requested = count(function (r) { return r.status === 'submitted' || r.status === 'pending-email'; });
+  var clean = count(function (r) { return r.status === 'not-found' || r.status === 'defunct'; });
+  var needs = count(function (r) { return r.status === 'needs-user' || r.status === 'blocked'; });
+  var idle = count(function (r) { return r.status === 'not-started' || r.status === 'unverified'; });
+  var worked = total - idle;
+  var cards = [
+    [requested, 'Removal requested', 'var(--done)'],
+    [clean, 'Checked, not listed or defunct', 'var(--clean)'],
+    [needs, 'Waiting on you', 'var(--user)'],
+    [idle, 'Still to check', 'var(--idle)'],
+    [Math.round(100 * worked / Math.max(total, 1)) + '%', 'Coverage so far', 'var(--ink)']
+  ];
+  document.getElementById('cards').innerHTML = cards.map(function (c) {
+    return '<div class="card"><div class="n" style="color:' + c[2] + '">' + c[0] + '</div><div class="l">' + c[1] + '</div></div>';
+  }).join('');
+
+  var bar = '', leg = '';
+  ORDER.forEach(function (s) {
+    var n = count(function (r) { return r.status === s; });
+    if (!n) return;
+    bar += '<span title="' + esc(st(s)) + ': ' + n + '" style="width:' + (100 * n / total) + '%;background:' + COLOR[s] + '"></span>';
+    leg += '<span><span class="dot" style="background:' + COLOR[s] + '"></span>' + esc(st(s)) + ' (' + n + ')</span>';
+  });
+  document.getElementById('bar').innerHTML = bar;
+  document.getElementById('legend').innerHTML = leg;
+
+  var regions = Object.keys(REGION).filter(function (k) { return rows.some(function (r) { return r.region === k; }); });
+  document.getElementById('regions').innerHTML = regions.map(function (k) {
+    var rs = rows.filter(function (r) { return r.region === k; });
+    var seg = ORDER.map(function (s) {
+      var n = rs.filter(function (r) { return r.status === s; }).length;
+      return n ? '<span title="' + esc(st(s)) + ': ' + n + '" style="width:' + (100 * n / rs.length) + '%;background:' + COLOR[s] + '"></span>' : '';
+    }).join('');
+    var wk = rs.filter(function (r) { return r.status !== 'not-started' && r.status !== 'unverified'; }).length;
+    return '<div class="region-row"><div>' + esc(REGION[k]) + '</div><div class="bar" style="margin:0">' + seg + '</div><div class="note">' + wk + '/' + rs.length + '</div></div>';
+  }).join('');
+
+  var todo = rows.filter(function (r) { return r.status === 'needs-user' || r.status === 'pending-email' || r.status === 'blocked'; });
+  document.getElementById('todo').innerHTML = todo.length ? todo.map(function (r) {
+    var link = r.url ? ' <a href="' + esc(r.url) + '" target="_blank" rel="noopener">open</a>' : '';
+    return '<li><strong>' + esc(r.name) + '</strong> <span class="pill" style="background:' + COLOR[r.status] + '">' + esc(st(r.status)) + '</span>' + link + '<div class="note">' + esc(r.note) + '</div></li>';
+  }).join('') : '<li class="note">Nothing waiting on you.</li>';
+
+  var today = new Date().toISOString().slice(0, 10);
+  var due = rows.filter(function (r) { return r.recheck_after && r.recheck_after <= today; });
+  document.getElementById('recheck').innerHTML = due.length ? due.map(function (r) {
+    return '<li><strong>' + esc(r.name) + '</strong> <span class="note">due ' + esc(r.recheck_after) + '</span></li>';
+  }).join('') : '<li class="note">No rechecks due yet. Brokers re-list people every few months, so re-run this every 3 months.</li>';
+
+  var fR = document.getElementById('fRegion'), fS = document.getElementById('fStatus'), q = document.getElementById('q');
+  regions.forEach(function (k) { fR.innerHTML += '<option value="' + k + '">' + esc(REGION[k]) + '</option>'; });
+  ORDER.forEach(function (s) { fS.innerHTML += '<option value="' + s + '">' + esc(st(s)) + '</option>'; });
+  function draw() {
+    var term = q.value.trim().toLowerCase();
+    var list = rows.filter(function (r) {
+      return (!fR.value || r.region === fR.value) && (!fS.value || r.status === fS.value) && (!term || r.name.toLowerCase().indexOf(term) >= 0);
+    });
+    document.getElementById('rows').innerHTML = list.map(function (r) {
+      var name = r.url ? '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.name) + '</a>' : esc(r.name);
+      return '<tr><td>' + name + '</td><td>' + esc(REGION[r.region] || r.region) + '</td><td><span class="pill" style="background:' + COLOR[r.status] + '">' + esc(st(r.status)) + '</span></td><td>' + esc(r.date) + '</td><td>' + esc(D.automation[r.automation] || r.automation) + '</td><td class="note">' + esc(r.note) + '</td></tr>';
+    }).join('') || '<tr><td colspan="6" class="note">No sites match.</td></tr>';
+  }
+  [fR, fS].forEach(function (el) { el.addEventListener('change', draw); });
+  q.addEventListener('input', draw);
+  draw();
+})();
+</script>
+</body>
+</html>

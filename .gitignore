@@ -1,0 +1,18 @@
+# Everything personal stays on the user's machine. Only the *.example.* files are public.
+profile/*
+!profile/profile.example.json
+!profile/.gitkeep
+
+state/*
+!state/requests.example.json
+!state/.gitkeep
+
+reports/*
+!reports/.gitkeep
+
+# editor and OS noise
+.DS_Store
+__pycache__/
+*.pyc
+.idea/
+.vscode/

@@ -1,0 +1,141 @@
+{
+  "region": "b2b",
+  "description": "Business-to-business contact databases. Founders and employees are far more likely to be listed here than in consumer people-search sites.",
+  "brokers": [
+    {
+      "id": "apollo",
+      "name": "Apollo.io",
+      "category": "b2b",
+      "optout_url": "https://www.apollo.io/privacy-policy/remove",
+      "automation": "email-confirm",
+      "steps": "Type the email, press 'Get verification information', then click the link sent to that inbox.",
+      "notes": "No CAPTCHA seen. Accepts a personal Gmail address.",
+      "url_verified": true
+    },
+    {
+      "id": "rocketreach",
+      "name": "RocketReach",
+      "category": "b2b",
+      "optout_url": "https://rocketreach.co/remove-profile",
+      "automation": "email-confirm",
+      "steps": "Type the email, press 'Submit Request', then click the verification link emailed if a profile exists.",
+      "notes": "No CAPTCHA seen. /opt_out is a 404; use /remove-profile.",
+      "url_verified": true
+    },
+    {
+      "id": "cognism",
+      "name": "Cognism",
+      "category": "b2b",
+      "optout_url": "https://cognism.privacy.saymine.io/cognism",
+      "automation": "email-confirm",
+      "steps": "Pick country and state, 'Delete my data', fill name, BUSINESS email, job title, company, phone, public LinkedIn URL, submit, then click the link (valid 7 days).",
+      "notes": "Requires a business email and a LinkedIn URL. Same SayMine portal as Kaspr.",
+      "url_verified": true
+    },
+    {
+      "id": "kaspr",
+      "name": "Kaspr",
+      "category": "b2b",
+      "optout_url": "https://kaspr.privacy.saymine.io/kaspr",
+      "automation": "email-confirm",
+      "steps": "Same form as Cognism, plus 'relationship with us' (choose Consumer). Click the emailed link within 7 days.",
+      "notes": "Requires a business email and a LinkedIn URL.",
+      "url_verified": true
+    },
+    {
+      "id": "zoominfo",
+      "name": "ZoomInfo",
+      "category": "b2b",
+      "optout_url": "https://www.zoominfo.com/trust-center/your-privacy",
+      "automation": "one-human-check",
+      "steps": "Open 'Request Removal' (privacyrequest.zoominfo.com/remove/verify). A one-time 'Press & Hold' bot check appears first; the user does it once, then the email form works for each address.",
+      "notes": "Only emails instructions to addresses that match a profile. Submit every address the person uses.",
+      "url_verified": true
+    },
+    {
+      "id": "lusha",
+      "name": "Lusha",
+      "category": "b2b",
+      "optout_url": "https://www.lusha.com/privacy-center/request-removal/",
+      "automation": "one-captcha",
+      "steps": "Form is inside an iframe. Reason 'Other reasons', country, email, then the user ticks reCAPTCHA and submits. Lusha then emails a confirmation link that must be clicked.",
+      "notes": "Fill the fields, leave the checkbox to the user.",
+      "url_verified": true
+    },
+    {
+      "id": "seamless",
+      "name": "Seamless.AI",
+      "category": "b2b",
+      "optout_url": "https://preferences.seamless.ai/",
+      "automation": "one-captcha",
+      "steps": "Select country and region, choose 'Delete My Information / Opt-Out', fill name, email, phone, relationship 'Business Contact', 'Deletion request', Review, then the user solves hCaptcha.",
+      "notes": "Careful: the card layout shifts; a stray click can open the 'Correct My Information' form instead.",
+      "url_verified": true
+    },
+    {
+      "id": "pdl",
+      "name": "People Data Labs",
+      "category": "b2b",
+      "optout_url": "https://www.peopledatalabs.com/do-not-sell-or-share",
+      "automation": "one-captcha",
+      "steps": "Full name, email, state of origin ('Other' for non-US/EU), reCAPTCHA by the user.",
+      "notes": "This form only stops the sale/sharing of data. For deletion, email privacy@peopledatalabs.com.",
+      "url_verified": true
+    },
+    {
+      "id": "signalhire",
+      "name": "SignalHire",
+      "category": "b2b",
+      "optout_url": "https://www.signalhire.com/opt-out",
+      "automation": "human",
+      "steps": "Form needs the exact profile URL, which needs an account to look up.",
+      "notes": "Alternative: email support@signalhire.com asking to delete all data for the person's email addresses.",
+      "url_verified": true
+    },
+    {
+      "id": "hunter",
+      "name": "Hunter.io",
+      "category": "b2b",
+      "optout_url": "https://hunter.io/privacy-policy",
+      "automation": "blocked",
+      "notes": "The browser extension had no permission for hunter.io in the pilot. Allow the site in the extension or do it by hand.",
+      "url_verified": false
+    },
+    {
+      "id": "contactout",
+      "name": "ContactOut",
+      "category": "b2b",
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "No direct opt-out link found on /privacy. Look for a 'Do Not Sell My Info' control or email their privacy contact.",
+      "url_verified": false
+    },
+    {
+      "id": "hubspot-clearbit",
+      "name": "HubSpot / Clearbit (Breeze Intelligence)",
+      "category": "b2b",
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Not yet checked.",
+      "url_verified": false
+    },
+    {
+      "id": "snov",
+      "name": "Snov.io",
+      "category": "b2b",
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Not yet checked.",
+      "url_verified": false
+    },
+    {
+      "id": "crunchbase",
+      "name": "Crunchbase",
+      "category": "b2b",
+      "optout_url": null,
+      "automation": "unknown",
+      "notes": "Not yet checked.",
+      "url_verified": false
+    }
+  ]
+}

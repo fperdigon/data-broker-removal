@@ -1,0 +1,23 @@
+{
+  "region": "marketing-search",
+  "description": "Large marketing-data aggregators and search engines.",
+  "brokers": [
+    {
+      "id": "google-results-about-you",
+      "name": "Google 'Results about you'",
+      "category": "search-engine",
+      "optout_url": null,
+      "automation": "human",
+      "steps": "Needs the person signed in to their Google account. Open it from the Google app or Google Search account menu, 'Results about you'. Do not guess a myaccount.google.com URL: /results-about-you is a 404.",
+      "notes": "Highest-value item for most people: removes phone and home address from search results. Never sign in on the person's behalf.",
+      "url_verified": false
+    },
+    {"id": "bing-personal-info", "name": "Bing personal info removal", "category": "search-engine", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "acxiom", "name": "Acxiom", "category": "marketing-data", "automation": "unknown", "notes": "US-centric. Not yet checked.", "url_verified": false},
+    {"id": "liveramp", "name": "LiveRamp", "category": "marketing-data", "automation": "unknown", "notes": "US-centric. Not yet checked.", "url_verified": false},
+    {"id": "epsilon", "name": "Epsilon", "category": "marketing-data", "automation": "unknown", "notes": "US-centric. Not yet checked.", "url_verified": false},
+    {"id": "experian-marketing", "name": "Experian marketing opt-out", "category": "marketing-data", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "neustar", "name": "Neustar", "category": "marketing-data", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "canada-post-lists", "name": "Canada Post mailing lists", "category": "marketing-data", "automation": "unknown", "notes": "Find out what list-removal exists. Not yet checked.", "url_verified": false}
+  ]
+}

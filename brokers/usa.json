@@ -1,0 +1,103 @@
+{
+  "region": "usa",
+  "description": "US people-search sites. Relevant only if the person has lived in the US (or appears by phone/email). Most block automated browsers, so expect many 'needs-user' results.",
+  "brokers": [
+    {
+      "id": "spokeo",
+      "name": "Spokeo",
+      "category": "people-search",
+      "search_url": "https://www.spokeo.com/Firstname-Lastname",
+      "optout_url": null,
+      "automation": "search-only",
+      "notes": "Name pages load without a bot check and list location per match, so presence can be checked automatically. Find the removal link in the footer if a match is the user.",
+      "url_verified": true
+    },
+    {
+      "id": "intelius",
+      "name": "Intelius",
+      "category": "people-search",
+      "search_url": "https://www.intelius.com/people-search/Firstname-Lastname/",
+      "optout_url": null,
+      "automation": "search-only",
+      "notes": "Name pages load and show the location of matches.",
+      "url_verified": true
+    },
+    {
+      "id": "radaris",
+      "name": "Radaris",
+      "category": "people-search",
+      "automation": "defunct",
+      "notes": "Pilot run (2026-10-24): site displayed a court-ordered domain transfer notice (Atlas Data Privacy case). Recheck before dropping from the list.",
+      "url_verified": false
+    },
+    {
+      "id": "peekyou",
+      "name": "PeekYou",
+      "category": "people-search",
+      "automation": "defunct",
+      "notes": "Pilot run (2026-10-24): same court-ordered domain notice. Recheck before dropping.",
+      "url_verified": false
+    },
+    {
+      "id": "whitepages",
+      "name": "Whitepages",
+      "category": "people-search",
+      "optout_url": null,
+      "automation": "blocked",
+      "notes": "Blocked the IP ('Access is temporarily restricted') after bursts of automated traffic. Never run parallel agents against it. Retry manually later.",
+      "url_verified": false
+    },
+    {
+      "id": "beenverified",
+      "name": "BeenVerified",
+      "category": "people-search",
+      "optout_url": "https://www.beenverified.com/svc/optout/search/",
+      "automation": "blocked",
+      "notes": "Cloudflare 'Just a moment' check. Needs a human.",
+      "url_verified": true
+    },
+    {
+      "id": "truepeoplesearch",
+      "name": "TruePeopleSearch",
+      "category": "people-search",
+      "optout_url": null,
+      "automation": "blocked",
+      "notes": "CAPTCHA on name search. Needs a human.",
+      "url_verified": false
+    },
+    {
+      "id": "thatsthem",
+      "name": "That's Them",
+      "category": "people-search",
+      "optout_url": null,
+      "automation": "blocked",
+      "notes": "Browser security verification screen. Needs a human.",
+      "url_verified": false
+    },
+    {
+      "id": "mylife",
+      "name": "MyLife",
+      "category": "people-search",
+      "optout_url": null,
+      "automation": "blocked",
+      "notes": "Cloudflare 'Performing security verification'. Needs a human.",
+      "url_verified": false
+    },
+    {"id": "peoplefinders", "name": "PeopleFinders", "category": "people-search", "automation": "unknown", "notes": "Pilot check ran before the page loaded; result unreliable. Retry one at a time and wait for the page.", "url_verified": false},
+    {"id": "fastpeoplesearch", "name": "FastPeopleSearch", "category": "people-search", "automation": "unknown", "notes": "Pilot check unreliable (see PeopleFinders).", "url_verified": false},
+    {"id": "nuwber", "name": "Nuwber", "category": "people-search", "automation": "unknown", "notes": "Pilot check hit an error page. Retry.", "url_verified": false},
+    {"id": "smartbackgroundchecks", "name": "SmartBackgroundChecks", "category": "people-search", "automation": "unknown", "notes": "Pilot check unreliable.", "url_verified": false},
+    {"id": "zabasearch", "name": "ZabaSearch", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "clustrmaps", "name": "ClustrMaps", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "anywho", "name": "AnyWho", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "addresses-com", "name": "Addresses.com", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "publicrecordsnow", "name": "Public Records Now", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "familytreenow", "name": "FamilyTreeNow", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "locatefamily", "name": "Locate Family", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "advancedbackgroundchecks", "name": "Advanced Background Checks", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "peoplelooker", "name": "PeopleLooker", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "instantcheckmate", "name": "Instant Checkmate", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "truthfinder", "name": "TruthFinder", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false},
+    {"id": "ussearch", "name": "US Search", "category": "people-search", "automation": "unknown", "notes": "Not yet checked.", "url_verified": false}
+  ]
+}

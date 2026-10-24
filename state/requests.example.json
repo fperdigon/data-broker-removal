@@ -1,0 +1,13 @@
+{
+  "updated": "2026-01-01",
+  "requests": [
+    {
+      "broker_id": "apollo",
+      "status": "pending-email",
+      "date": "2026-01-01",
+      "email_used": "jane@example.com",
+      "note": "Example row. Real rows are written by: scripts/removal.py mark apollo pending-email --email jane@example.com",
+      "recheck_after": "2026-04-02"
+    }
+  ]
+}

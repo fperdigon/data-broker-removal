@@ -1,0 +1,23 @@
+{
+  "display_name": "Jane Doe",
+  "name_variants": ["Jane Doe", "Jane A. Doe", "J. Doe"],
+  "date_of_birth": "1990-01-31",
+  "emails": {
+    "primary": "jane@example.com",
+    "business": "jane@company.example",
+    "alternates": ["jane.old@example.org"]
+  },
+  "phone": "+1-555-555-0100",
+  "address": {
+    "line1": "1 Example Street",
+    "city": "Montreal",
+    "region": "QC",
+    "postal_code": "A1A 1A1",
+    "country": "CA"
+  },
+  "countries_lived_in": ["CA"],
+  "company": "Example Inc.",
+  "job_title": "Founder",
+  "linkedin_url": "https://www.linkedin.com/in/example",
+  "_comment": "Copy this file to profile.json (or run scripts/removal.py init). profile.json is git-ignored. Only fill what a form actually needs; DOB is optional and only used where a site cannot identify the record without it."
+}
